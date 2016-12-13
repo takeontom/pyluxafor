@@ -28,7 +28,10 @@ Python API for the Luxafor Flag
 Features
 --------
 
-* TODO
+* Python 3+
+* Simple, clean API to control the
+  `Luxafor Flag <http://luxafor.com/luxafor-flag/>`
+* Where possible, allows the setting of multiple, specific LEDs at once.
 
 
 Installation
