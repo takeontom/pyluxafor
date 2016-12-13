@@ -10,7 +10,7 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
-    # TODO: put package requirements here
+    'pyusb==1.0.0',
 ]
 
 test_requirements = [
@@ -22,7 +22,7 @@ setup(
     version='0.1.0',
     description="Python API for the Luxafor Flag",
     long_description=readme + '\n\n' + history,
-    author="gTom Smith",
+    author="Tom Smith",
     author_email='tom@takeontom.com',
     url='https://github.com/takeontom/pyluxafor',
     packages=[

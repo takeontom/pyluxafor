@@ -30,6 +30,21 @@ Features
 
 * TODO
 
+
+Installation
+------------
+
+Create the file: `/etc/udev/rules.d/10-luxafor.rules` with the following
+contents::
+
+    ACTION=="add", SUBSYSTEM=="usb", ATTRS{idProduct}=="f372", ATTRS{idVendor}=="04d8", MODE:="666"
+
+Then reload udev::
+
+    $ sudo service udev reload
+
+Then unplug your Luxafor Flag and reinsert it.
+
 Credits
 ---------
 
@@ -37,4 +52,3 @@ This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypack
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
-

@@ -5,7 +5,7 @@ Credits
 Development Lead
 ----------------
 
-* gTom Smith <tom@takeontom.com>
+* Tom Smith <tom@takeontom.com>
 
 Contributors
 ------------

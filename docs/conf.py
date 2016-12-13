@@ -56,7 +56,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'PyLuxafor'
-copyright = u"2016, gTom Smith"
+copyright = u"2016, Tom Smith"
 
 # The version info for the project you're documenting, acts as replacement
 # for |version| and |release|, also used in various other places throughout
@@ -210,7 +210,7 @@ latex_elements = {
 latex_documents = [
     ('index', 'pyluxafor.tex',
      u'PyLuxafor Documentation',
-     u'gTom Smith', 'manual'),
+     u'Tom Smith', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at
@@ -241,7 +241,7 @@ latex_documents = [
 man_pages = [
     ('index', 'pyluxafor',
      u'PyLuxafor Documentation',
-     [u'gTom Smith'], 1)
+     [u'Tom Smith'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -256,7 +256,7 @@ man_pages = [
 texinfo_documents = [
     ('index', 'pyluxafor',
      u'PyLuxafor Documentation',
-     u'gTom Smith',
+     u'Tom Smith',
      'pyluxafor',
      'One line description of project.',
      'Miscellaneous'),
