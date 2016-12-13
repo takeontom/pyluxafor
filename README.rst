@@ -45,10 +45,38 @@ Then reload udev::
 
 Then unplug your Luxafor Flag and reinsert it.
 
+Example usage
+-------------
+
+::
+
+    from pyluxafor import LuxaforFlag
+    from time import sleep
+
+    flag = LuxaforFlag()
+    flag.off()
+    flag.do_fade_colour(
+        leds=[LuxaforFlag.LED_TAB_1, LuxaforFlag.LED_BACK_1, LuxaforFlag.LED_BACK_2],
+        r=10, g=10, b=0,
+        duration=255
+    )
+    flag.do_static_colour(leds=LuxaforFlag.LED_BACK_3, r=0, g=0, b=100)
+
+    sleep(3)
+    flag.off()
+
+    flag.do_pattern(LuxaforFlag.PATTERN_POLICE, 3)
+
+
 Credits
 ---------
 
-This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+Many thanks to `vmitchell85 <https://github.com/vmitchell85>` for his
+`luxafor-python <https://github.com/vmitchell85/luxafor-python>` project,
+which provided the initial inspiration for this project, and provided easy
+answers to the problems I encountered.
 
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+If you're looking to control a Luxafor Flag in Windows using Python,
+vmitchell85's project is probably the best bet:
+
+* https://github.com/vmitchell85/luxafor-python
