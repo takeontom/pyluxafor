@@ -19,7 +19,7 @@ test_requirements = [
 
 setup(
     name='pyluxafor',
-    version='0.1.0',
+    version='0.2.0',
     description="Python API for the Luxafor Flag",
     long_description=readme + '\n\n' + history,
     author="Tom Smith",
