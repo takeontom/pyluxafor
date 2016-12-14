@@ -5,21 +5,17 @@ PyLuxafor
 
 .. image:: https://img.shields.io/pypi/v/pyluxafor.svg
         :target: https://pypi.python.org/pypi/pyluxafor
-        :remote:
 
 .. image:: https://img.shields.io/travis/takeontom/pyluxafor.svg
         :target: https://travis-ci.org/takeontom/pyluxafor
-        :remote:
 
 .. image:: https://readthedocs.org/projects/pyluxafor/badge/?version=latest
         :target: https://pyluxafor.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
-        :remote:
 
 .. image:: https://pyup.io/repos/github/takeontom/pyluxafor/shield.svg
      :target: https://pyup.io/repos/github/takeontom/pyluxafor/
      :alt: Updates
-     :remote:
 
 
 Python API for the Luxafor Flag
