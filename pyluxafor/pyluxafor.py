@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
-import usb
+import sys
+
+if sys.platform == 'darwin':
+    import hid
+else:
+    import usb
 
 
 class LuxaforFlag(object):
@@ -67,10 +72,16 @@ class LuxaforFlag(object):
         Attempts to retrieve the Luxafor Flag device using the known Vendor
         and Product IDs.
         """
-        device = usb.core.find(
-            idVendor=LuxaforFlag.DEVICE_VENDOR_ID,
-            idProduct=LuxaforFlag.DEVICE_PRODUCT_ID
-        )
+        try:
+            device = usb.core.find(
+                idVendor=LuxaforFlag.DEVICE_VENDOR_ID,
+                idProduct=LuxaforFlag.DEVICE_PRODUCT_ID
+            )
+        except NameError:
+            device = hid.device()
+            device.open(c.DEVICE_VENDOR_ID, c.DEVICE_PRODUCT_ID)
+            device.set_nonblocking(1)
+
         return device
 
     def write(self, values):
