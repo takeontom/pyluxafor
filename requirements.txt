@@ -1,1 +1,2 @@
 pyusb==1.0.2
+hidapi==0.7.99.post21
