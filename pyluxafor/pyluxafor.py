@@ -140,7 +140,7 @@ class LuxaforFlag(object):
 
     def create_wave_command(self, wave_type, r, g, b, duration=20, repeat=1):
         return [
-            LuxaforFlag.MODE_WAVE, wave_type, r, g, b, duration, 0, repeat
+            LuxaforFlag.MODE_WAVE, wave_type, r, g, b, 0, repeat, duration
         ]
 
     def create_pattern_command(self, pattern_id, repeat=1):
