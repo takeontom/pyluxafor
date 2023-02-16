@@ -36,8 +36,32 @@ class LuxaforFlag(object):
     PATTERN_RANDOM5 = 7
     PATTERN_RAINBOWWAVE = 8
 
-    def __init__(self):
-        self.device = None
+    def __init__(self, device = None):
+        self.device = device
+        self.serial_number = None
+        self.firmware_version = None
+        
+        if self.device:
+            self.setup_device(device)
+
+    def discover(self):
+        """
+        Return list of all devices, None if no devices present
+        """
+
+        devices = usb.core.find(find_all=True, idVendor=LuxaforFlag.DEVICE_VENDOR_ID, idProduct=LuxaforFlag.DEVICE_PRODUCT_ID)
+
+        flags = list()
+
+        for device in devices:
+            flag = LuxaforFlag(device)
+            flags.append(flag)
+
+        if len(flags) > 0:
+            return flags
+        else:
+            return None
+
 
     def get_device(self):
         """
@@ -61,6 +85,7 @@ class LuxaforFlag(object):
             pass
 
         device.set_configuration()
+        self.get_serial_number()
 
     def find_device(self):
         """
@@ -72,6 +97,19 @@ class LuxaforFlag(object):
             idProduct=LuxaforFlag.DEVICE_PRODUCT_ID
         )
         return device
+    
+    def get_serial_number(self):
+        """
+        Populates the device's serial number
+        """
+        self.write([0x80,0,0,0,0,0,0,0])
+        data = self.read(8)
+        while data[0] != 0x80 :
+            self.write([0x80,0,0,0,0,0,0,0])
+            data = self.read(8)
+        self.serial_number = (data[2]<<8) | data[3]
+        self.firmware_version = data[1]
+
 
     def write(self, values):
         """
@@ -88,6 +126,9 @@ class LuxaforFlag(object):
         # command again works a treat.
         self.get_device().write(1, values)
 
+    def read(self, bytecount):
+        return self.get_device().read(0x81, bytecount)
+
     def create_static_colour_command(self, led, r, g, b):
         return [LuxaforFlag.MODE_STATIC_COLOUR, led, r, g, b]
 
@@ -99,7 +140,7 @@ class LuxaforFlag(object):
 
     def create_wave_command(self, wave_type, r, g, b, duration=20, repeat=1):
         return [
-            LuxaforFlag.MODE_WAVE, wave_type, r, g, b, duration, 0, repeat
+            LuxaforFlag.MODE_WAVE, wave_type, r, g, b, 0, repeat, duration
         ]
 
     def create_pattern_command(self, pattern_id, repeat=1):
@@ -110,6 +151,12 @@ class LuxaforFlag(object):
         Turn off all LEDs.
         """
         self.do_static_colour(255, 0, 0, 0)
+
+    def on(self):
+        """
+        Turn on all LEDs to white
+        """
+        self.do_static_colour(255,255,255,255)
 
     def do_static_colour(self, leds, r, g, b):
         """
